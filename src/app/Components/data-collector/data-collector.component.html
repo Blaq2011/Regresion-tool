@@ -1,0 +1,31 @@
+
+<div>
+  <label >Select a file to begin: </label>
+    <input 
+    type="file"
+    (change)="onFileSelected($event)"
+  >
+</div>
+
+<br>
+
+
+
+<form [formGroup]=" columnsForm" (ngSubmit)="fetch_columns()">
+
+  <div *ngIf="dataLoaded === true" >
+    <label for="xLabel">x-axis</label>
+      <select  formControlName="xLabel">
+          <option value="">Select x-axis</option>
+          <option *ngFor="let item of columns" [value]="item" >{{item}}</option>
+      </select>
+
+      <label for="yLabel">y-axis</label>
+      <select  formControlName="yLabel">
+          <option value="">Select y-axis</option>
+          <option *ngFor="let item of columns" [value]="item" >{{item}}</option>
+      </select>
+
+    <button class="button" type="submit">submit columns</button>
+  </div>
+</form>
