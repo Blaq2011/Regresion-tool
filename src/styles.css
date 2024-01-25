@@ -1,1 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+
+
+body{
+    font-family:  Roboto, "Helvetica Neue", sans-serif;
+    margin: 0;
+    background-color: rgb(255, 255, 255);
+}
+
+
+
+/* CSV viewer editing starts */
+table {
+    border-collapse: collapse;
+    border-radius: 5px;
+    box-shadow:  rgb(35, 35, 35);
+    overflow-x: auto;
+    font-family: "Quicksand", sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    width: 100vw;
+    top: 0;
+  }
+  
+  th {
+    background:  rgb(35, 35, 35);
+    color: #ffffff;
+    text-align: left;
+  }
+  
+  td {
+    padding: 1px 20px;
+  }
+  
+  tr:nth-child(even) {
+    background: #eeeeee;
+  }
+  table, th, td {
+    border: 1px solid black;
+   
+  }
+

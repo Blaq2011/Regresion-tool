@@ -9,14 +9,19 @@ import { Subject } from 'rxjs/internal/Subject';
 })
 export class MyVariablesService {
 
-
+  public result:any 
+  public columns: any = [];
   public entireData: any; //variable to receive entire data
+  public listOfTraces: any = []
+  public selectedColumns: any;
 
   private subject = new Subject<any>();  //listener for the Onclick command???
 
 
   constructor() { }
 
+
+ 
 
   //receives onClick feedback from chart-data component button; then loads allVals variable with data
   sendClickEvent() {   
@@ -27,4 +32,8 @@ export class MyVariablesService {
   getClickEvent(): Observable<any>{ 
     return this.subject.asObservable();
   }
+
+
+
+
 }

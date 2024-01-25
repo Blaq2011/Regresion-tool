@@ -1,0 +1,38 @@
+
+
+.optionsContainer{
+color: white;
+background-color:rgb(35, 35, 35);
+max-width: 17%;
+position: absolute;
+min-height: 40%;
+/* margin-left: 1%; */
+top: 30%;
+left: 5%;
+border-style: groove;
+
+}
+.plotOptions{
+    margin-top: 50px;
+
+}
+
+
+#chartTab{
+    margin-top: 5%;
+     padding: 16px;
+   background-color:rgb(35, 35, 35);
+    width: 70%;
+
+
+    color: rgb(255, 255, 255);
+    min-width: 25px !important;
+    min-height: 73vh;
+    font-weight: 700;
+
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translate(-40%, -50%);
+}
+

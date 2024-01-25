@@ -1,0 +1,20 @@
+
+  <mat-toolbar id="container">
+    <span><s>Regression Tool</s></span>
+    <span class="example-spacer"></span>
+
+    <div id="tabs">
+    <div class = "tab" routerLinkActive="active" routerLink="File Content">Table <mat-icon>view_comfy</mat-icon></div>
+
+    <div>|</div>
+    <div class = "tab" routerLinkActive="active" routerLink="Charts & Stats">Chart <mat-icon>equalizer</mat-icon> </div>
+    
+  </div>
+
+  <button class = "tab" type="button" mat-raised-button (click)="fileInput.click()">
+      <input  hidden (change)="onFileSelected($event)" #fileInput type="file" id="fileButton" hidden/>
+      <mat-icon>cloud_upload</mat-icon>
+    </button>
+  </mat-toolbar>
+
+
