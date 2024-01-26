@@ -10,7 +10,7 @@ import { DataCollectorComponent } from '../data-collector/data-collector.compone
 @Component({
   selector: 'app-chart-data',
   templateUrl: './chart-data.component.html',
-  styleUrl: './chart-data.component.css'
+  styleUrl: './chart-data.component.scss'
 })
 export class ChartDataComponent  {
   
@@ -24,7 +24,7 @@ layout: any;
 config:any;
 
 boxChecked: boolean = false;
-orderEvent: number = 0;  
+orderEvent: string = "";  
 
 myData: any
 columns: any = [];
@@ -34,7 +34,7 @@ columns: any = [];
     yLabel: ''
   });
 
-
+availableOrders = ["firstorder", "secondorder", "thirdorder", "fourthorder"]
 
 //Service and template controls
   clickEventsubscription:Subscription;
@@ -62,7 +62,7 @@ selectedColumns: any = []
       this.myVariableService.getClickEvent().subscribe(()=>{
       this.y_valuesList = []
       this.listOfTraces = []; // resets the list of traces on every submit of new data to prevent duplicates
-      this.data_processor(this.orderEvent,"firstorder", this.boxChecked)
+      this.data_processor("firstorder", this.boxChecked)
   
  
         })
@@ -168,7 +168,7 @@ yListCreator(data: []){
 
 selectedOrder(event: any){
   // this.data_processor(event.target.value)
-this.orderEvent = event
+this.orderEvent = event.target.value
 this.refresh_plot()
 }
 
@@ -188,23 +188,20 @@ refresh_plot(){
   this.listOfTraces = [];
 
 
-  if(this.orderEvent === 0){
-    this.data_processor(0,"firstorder", this.boxChecked)
-  } else if(this.orderEvent === 1){
-    this.data_processor(1,"secondorder", this.boxChecked)
-  }else if(this.orderEvent === 2){
-    this.data_processor(2,"thirdorder", this.boxChecked)
+  if(this.orderEvent === "firstorder"){
+    this.data_processor("firstorder", this.boxChecked)
+  } else if(this.orderEvent === "secondorder"){
+    this.data_processor("secondorder", this.boxChecked)
+  }else if(this.orderEvent === "thirdorder"){
+    this.data_processor("thirdorder", this.boxChecked)
   }else{
-    this.data_processor(3, "fourthorder", this.boxChecked)
+    this.data_processor("fourthorder", this.boxChecked)
   }
 }
 
 
 
-
-
-
- data_processor(plotTab:any ,order: any, checkbox:boolean){
+ data_processor(order: any, checkbox:boolean){
 
   this.yListCreator(this.myVariableService.entireData[0][`${order}`]["outquantile"])
   this.xvalue = this.myVariableService.entireData[0][`${order}`]["outpoly"][0][1]["xaxis"]
@@ -225,26 +222,19 @@ refresh_plot(){
 
   this.dataLoaded = true 
   // this.plotComponent.show_plot()
-  this.show_plot(plotTab)
+  this.show_plot()
   
 }
 
 
 
- show_plot(plotTab:any){
-  
+  show_plot(){       
+
+    this.graph = {
+      
+    data: this.listOfTraces,
     
-    if(plotTab === 0){
-      this.graph = this.listOfTraces
-    } else if(plotTab === 1){
-      this.graph2 = this.listOfTraces
-    }else if(plotTab === 2){
-      this.graph3 = this.listOfTraces
-    }else{
-      this.graph4 = this.listOfTraces
-    }
-    
-    this.layout = { 
+    layout : { 
         // title: this.title,
         xaxis: {
           title: this.selectedColumns[0],
@@ -259,16 +249,17 @@ refresh_plot(){
         height: 600,
       },
 
-      this.config = {responsive: true}
+      config : {responsive: true}
       
-
-  console.log(this.graph);
   
+    }
+
+    console.log(this.graph);
+  }
+
+
   }
 
 
 
 
-
-
-}

@@ -1,0 +1,57 @@
+$primary-color: #145da5;
+$hover-color: rgb(255, 251, 0);
+$icon-transition: transform 0.25s ease-in-out;
+
+ 
+ #container {
+    position: fixed;
+    padding: 0px 10px;
+    background-color: $primary-color;
+    color: rgb(255, 255, 255);
+    height: 9%;
+    width: 100%;
+    border-width: 5px;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+
+#tabs {
+    flex-grow: 1;
+    display: flex;
+    gap: 20px; 
+    
+}
+
+.tab{
+    cursor: pointer; 
+    color: rgb(255, 255, 255);
+
+    .tabIcons {
+        transform: scale(2.5);
+        
+     }
+
+     .mat-icon {
+        transform: scale(2.5);
+        
+     }
+}
+
+.tab:hover{
+    color: $hover-color;
+    transform: scale(1.1);
+    transition:$icon-transition;
+}
+
+.tab.active{
+    color: rgb(129, 129, 129);
+}
+
+
+
+
+
+

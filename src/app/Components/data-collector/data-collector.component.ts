@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { MyDataService } from '../../Services/my-data.service';
 import { Papa } from 'ngx-papaparse';
 import { MyVariablesService } from '../../Services/my-variables.service';
+import { Router } from '@angular/router';
+import { FileContentComponent } from '../file-content/file-content.component';
 
 
 
@@ -9,25 +11,40 @@ import { MyVariablesService } from '../../Services/my-variables.service';
 @Component({
   selector: 'app-data-collector',
   templateUrl: './data-collector.component.html',
-  styleUrl: './data-collector.component.css'
+  styleUrl: './data-collector.component.scss'
 })
 export class DataCollectorComponent {
 
 myData: any = [];
 
 
+mainSectionActive = "closedMainSection"
+switchMatIcon1 = "firstMatIconActive"
+switchMatIcon2 = "secondMatIconInactive"
 
   constructor(
     private dataService: MyDataService, 
     private papa: Papa,
     private myVariableService: MyVariablesService,
-
+    private fileContent: FileContentComponent,
+    // private router: Router,
     )
     {}
 
-// onFileSelected(event: any) {
-//    this.fetch_file(event.target.files[0])
-//    }
+
+openDuckerClicked(){
+  this.mainSectionActive = "openedMainSection"
+  this.switchMatIcon1 = "firstMatIconInactive"
+  this.switchMatIcon2 = "secondMatIconActive"
+}
+
+
+closeDuckerClicked(){
+  this.mainSectionActive = "closedMainSection"
+  this.switchMatIcon2 = "secondMatIconInactive"
+  this.switchMatIcon1 = "firstMatIconActive"
+}
+
 
 fetch_file(targetFile: string | Blob){
  
@@ -42,6 +59,7 @@ fetch_file(targetFile: string | Blob){
     complete: (result) => {
     console.log('Parsed: ', result);
     this.createCsv(targetFile)
+
     this.myVariableService.columns = result.data[0]  //saving columns
     console.log(this.myVariableService.columns);
    
@@ -60,6 +78,7 @@ fetch_file(targetFile: string | Blob){
 
 createCsv(targetFile: string | Blob){
 
+
   this.papa.parse( targetFile,{
     delimitersToGuess: [',', '\t', '|', ';'],
     fastMode: false,
@@ -70,12 +89,16 @@ createCsv(targetFile: string | Blob){
 
     complete: (result) => {
     this.myVariableService.result = result
+    this.fileContent.loadPage(result)
+
+    //  this.router.navigateByUrl('File Content')
+   
 }
 
 });
+
+
 }
-
-
 
    fetch_data(){
     this.myData = [] ; // resets the list on every click to prevent duplicates

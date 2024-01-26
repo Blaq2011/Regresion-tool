@@ -28,6 +28,13 @@
       </form>    
       
       <div id="graphControl">
+
+<div class = "plotOptions">
+  <select (change)="selectedOrder($event)">
+    <option *ngFor="let item of availableOrders"  [value]="item">{{item}}</option>
+  </select>
+</div>
+
         <div class = "plotOptions">
           <label>Errorbars: </label>
           <input 
@@ -38,7 +45,6 @@
           <button class="button" type="">Export Chart</button>
         </div>
       </div>
-    
   </div>
 
 </section>
@@ -46,33 +52,9 @@
 <section>
 
   <div id="chartTab">
-    <mat-tab-group  (selectedIndexChange)="selectedOrder($event)" dynamicHeight>
-      <mat-tab class = "mat" label="First"> 
-        Content1
-        <div *ngIf="dataLoaded === true" class="plotsMainDiv" id="plotDiv">
-          <plotly-plot [data]="graph" [layout]="layout" [config]="config"  [updateOnDataChange] ="true"></plotly-plot> 
-      </div> 
-      </mat-tab>
-      <mat-tab label="Second"> 
-        Content 2 
-        <div *ngIf="dataLoaded === true" class="plotsMainDiv" id="plotDiv">
-          <plotly-plot [data]="graph2" [layout]="layout" [config]="config"  [updateOnDataChange] ="true"></plotly-plot> 
-      </div> 
-      </mat-tab>
-      <mat-tab label="Third"> 
-        Content 3 
-        <div *ngIf="dataLoaded === true" class="plotsMainDiv" id="plotDiv">
-          <plotly-plot [data]="graph3" [layout]="layout" [config]="config"  [updateOnDataChange] ="true"></plotly-plot> 
-      </div> 
-      </mat-tab>
-      <mat-tab label="Fourth"> 
-        Content 4 
-        <div *ngIf="dataLoaded === true" class="plotsMainDiv" id="plotDiv">
-          <plotly-plot [data]="graph4" [layout]="layout" [config]="config"  [updateOnDataChange] ="true"></plotly-plot> 
-      </div> 
-      </mat-tab>
-    </mat-tab-group>
-  
+    <div *ngIf="dataLoaded === true" class="plotsMainDiv" id="plotDiv">
+      <plotly-plot [data]="graph.data" [layout]="graph.layout" [config]="graph.config"  [updateOnDataChange] ="true"></plotly-plot> 
+  </div> 
   </div>
   
 </section>

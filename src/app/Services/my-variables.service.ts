@@ -9,6 +9,9 @@ import { Subject } from 'rxjs/internal/Subject';
 })
 export class MyVariablesService {
 
+
+  public regressionClicked: string = ""
+
   public result:any 
   public columns: any = [];
   public entireData: any; //variable to receive entire data

@@ -53,7 +53,7 @@ PlotlyModule.plotlyjs = PlotlyJS;
   
 
   ],
-  providers: [DataCollectorComponent, HTMLElement, MatIconModule,],
+  providers: [DataCollectorComponent, ChartDataComponent,FileContentComponent, HTMLElement, MatIconModule,],
   bootstrap: [AppComponent, ]
 
 })
