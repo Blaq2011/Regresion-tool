@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MyDataService } from '../../Services/my-data.service';
 import { Papa } from 'ngx-papaparse';
 import { MyVariablesService } from '../../Services/my-variables.service';
-import { Router } from '@angular/router';
 import { FileContentComponent } from '../file-content/file-content.component';
 
 
@@ -18,32 +17,15 @@ export class DataCollectorComponent {
 myData: any = [];
 
 
-mainSectionActive = "closedMainSection"
-switchMatIcon1 = "firstMatIconActive"
-switchMatIcon2 = "secondMatIconInactive"
 
   constructor(
     private dataService: MyDataService, 
     private papa: Papa,
     private myVariableService: MyVariablesService,
     private fileContent: FileContentComponent,
-    // private router: Router,
     )
     {}
 
-
-openDuckerClicked(){
-  this.mainSectionActive = "openedMainSection"
-  this.switchMatIcon1 = "firstMatIconInactive"
-  this.switchMatIcon2 = "secondMatIconActive"
-}
-
-
-closeDuckerClicked(){
-  this.mainSectionActive = "closedMainSection"
-  this.switchMatIcon2 = "secondMatIconInactive"
-  this.switchMatIcon1 = "firstMatIconActive"
-}
 
 
 fetch_file(targetFile: string | Blob){
@@ -73,8 +55,8 @@ fetch_file(targetFile: string | Blob){
     
 });
 
-}
 
+}
 
 createCsv(targetFile: string | Blob){
 

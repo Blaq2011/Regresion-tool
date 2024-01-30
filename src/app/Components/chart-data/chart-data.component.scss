@@ -1,17 +1,110 @@
+$primary-color: #1976d2;
+$hover-color: rgb(255, 251, 0);
+$icon-transition: transform 0.24s ease-in-out;
 
 
-.optionsContainer{
-color: rgb(255, 255, 255);
-background-color:rgb(35, 35, 35);
-width: 12%;
-position: absolute;
-min-height: 40%;
+#csvTable{
+    padding-top: 5%;
+}
+
+
+
+#mainSection{
+    position: fixed;
+    background-color: rgb(255, 0, 0);
+    height: 91%;
+    // width: 100%;
+    right: 0;
+    bottom: 0;
+    transition: 0.2s ease-in-out;
+
+    #mainSectionDuckControl{
+        position: sticky;
+        background-color: $primary-color;
+        height: 100%;
+        width: 30px;
+        left: 0;
+        border-style: groove;
+    
+        #mainSectionDuckIcon{
+            position: relative;
+            top: 50%;
+            left: 0;
+            font-size: 200%;
+            border-style:ridge;
+            background-color: $primary-color;
+            color: white;
+        }
+    
+            #mainSectionDuckIcon:hover{
+                transform: scale(1.2);
+                transition: $icon-transition;
+            }
+        }
+    
+
+#switchTab{
+    background-color: rgb(30, 255, 0);
+    height: 100%;
+    width: 12%;
+    position: absolute;
+    // min-height: 40%;
 /* margin-left: 1%; */
-top: 30%;
-left: 5%;
-/* border-style: groove; */
+    top: 0%;
+    left: 1.9%;
+}
+
+#mainOptionsContainer{
+    background-color: rgb(255, 255, 255);
+    height: 100%;
+    // width: 18%;
+    position: absolute;
+    // min-height: 40%;
+/* margin-left: 1%; */
+    top: 0%;
+    // left: 1.9%;
+    left: 14%;
+    transition: 0.2s ease-in-out;
+
+    #mainOptionsDuckControl{
+        position: absolute;
+        background-color: $primary-color;
+        height: 100%;
+        width: 30px;
+        right: 0;
+        border-style: groove;
+    
+        #mainOptionsDuckIcon{
+            position: relative;
+            top: 50%;
+            left: 0;
+            font-size: 200%;
+            border-style:ridge;
+            background-color: $primary-color;
+            color: white;
+        }
+    
+            #mainOptionsDuckIcon:hover{
+                transform: scale(1.2);
+                transition: $icon-transition;
+            }
+        }
+  .innerOptionsContainer{
+    position: absolute;
+    color: rgb(255, 255, 255);
+    background-color:rgb(0, 0, 0);
+    min-height: 40%;
+    width: 83%;
+    top: 25%;
+    left: 3%;
+
+   }
+}
 
 }
+
+
+
 .plotOptions{
 
     margin-top: 30px;
@@ -24,7 +117,7 @@ left: 5%;
     margin-top: 5%;
     padding: 16px;
     background-color:rgb(35, 35, 35);
-    width: 70%;
+    width: 60%;
 
 
     color: rgb(255, 255, 255);
@@ -34,7 +127,84 @@ left: 5%;
 
     position: absolute;
     top: 42%;
-    left: 50%;
+    left: 57%;
     transform: translate(-40%, -50%);
 }
+
+
+
+.openedMainSection{
+    width: 100%;
+
+}
+.closedMainSection{
+    width: 1.9%;
+
+    #mainOptionsContainer{
+        display: none;
+    }
+
+    #graphSection{
+        display: none;
+    }
+
+    #switchTab{
+        display: none;
+    }
+    
+
+}
+
+.mainSectionFirstMatIconActive{
+    display: block;
+}
+.mainSectionFirstMatIconInactive{
+    display: none;
+}
+.mainSectionSecondMatIconActive{
+    display: block;
+}
+.mainSectionSecondMatIconInactive{
+    display: none;
+}
+
+
+
+
+
+
+.openedMainOptions{
+    width: 18%;
+
+
+}
+.closedMainOptions{
+    width: 2%;
+
+    .innerOptionsContainer{
+        display: none;
+    
+       }
+
+   
+}
+
+.mainOptionsContainerFirstMatIconActive{
+    display: block;
+}
+.mainOptionsContainerFirstMatIconInactive{
+    display: none;
+}
+.mainOptionsContainerSecondMatIconActive{
+    display: block;
+}
+.mainOptionsContainerSecondMatIconInactive{
+    display: none;
+}
+
+
+
+
+
+
 

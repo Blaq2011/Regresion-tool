@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
+import { CsvTableService } from '../../Services/csv-table.service';
 import { MyDataService } from '../../Services/my-data.service';
 import { MyVariablesService } from '../../Services/my-variables.service';
 import { DataCollectorComponent } from '../data-collector/data-collector.component';
+import { FileContentComponent } from '../file-content/file-content.component';
 
 
 
@@ -14,6 +17,19 @@ import { DataCollectorComponent } from '../data-collector/data-collector.compone
 })
 export class ChartDataComponent  {
   
+mainSectionActive = "openedMainSection"
+mainOptionsActive = "openedMainOptions"
+
+switchMatIcon1 = "mainSectionFirstMatIconInactive"
+switchMatIcon2 = "mainSectionSecondMatIconActive"
+
+switchMatIcon3 = "mainOptionsContainerFirstMatIconInactive"
+switchMatIcon4 = "mainOptionsContainerSecondMatIconActive"
+
+
+
+
+
 
 dataLoaded: boolean = false;
 graph: any;
@@ -49,11 +65,16 @@ selectedColumns: any = []
  xvalue: any = [];
  
 
+ root:any
+
   constructor(
     private dataService: MyDataService, 
     private formBuilder: FormBuilder,
     private dataCollector: DataCollectorComponent,
     private myVariableService: MyVariablesService,
+    private csvTableService: CsvTableService,
+    private router: Router,
+    private route: ActivatedRoute
 
   ){
     this.columns = this.myVariableService.columns
@@ -69,8 +90,54 @@ selectedColumns: any = []
   }
 
 ngOnInit (){
-
+  this.root = document.querySelector('#csvRoot1')
+  this.csvTableService.update(this.root,this.myVariableService.result.data.slice(1), this.myVariableService.result.data[0])  
+  console.log(this.root);
 }
+
+
+
+regressionTabClicked(){
+
+  this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  // this.router.onSameUrlNavigation = "reload";
+  this.router.navigate(["File Content/Regression"], {relativeTo: this.route, queryParamsHandling: "merge"})
+ 
+  }
+  
+
+
+
+
+mainSectionOpenDuckerClicked(){
+  this.mainSectionActive = "openedMainSection"
+  this.switchMatIcon1 = "mainSectionFirstMatIconInactive"
+  this.switchMatIcon2 = "mainSectionSecondMatIconActive"
+}
+
+
+mainSectionCloseDuckerClicked(){
+  this.mainSectionActive = "closedMainSection"
+  this.switchMatIcon2 = "mainSectionSecondMatIconInactive"
+  this.switchMatIcon1 = "mainSectionFirstMatIconActive"
+}
+
+mainOptionsOpenDuckerClicked(){
+  this.mainOptionsActive = "openedMainOptions"
+  this.switchMatIcon3 = "mainOptionsContainerFirstMatIconInactive"
+  this.switchMatIcon4 = "mainOptionsContainerSecondMatIconActive"
+}
+
+mainOptionsCloseDuckerClicked(){
+  this.mainOptionsActive = "closedMainOptions"
+  this.switchMatIcon4 = "mainOptionsContainerSecondMatIconInactive"
+  this.switchMatIcon3 = "mainOptionsContainerFirstMatIconActive"
+}
+
+
+
+
+
 
 
 fetch_columns (){

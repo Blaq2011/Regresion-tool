@@ -7,7 +7,7 @@ import { FileContentComponent } from './Components/file-content/file-content.com
 
 const routes: Routes = [ 
   {path: "File Content", component: FileContentComponent},
-  {path: "Regression", component: DataCollectorComponent} 
+  {path: "File Content/Regression", component: ChartDataComponent} 
 ];
 
 @NgModule({

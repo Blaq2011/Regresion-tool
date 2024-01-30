@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { MyVariablesService } from '../../Services/my-variables.service';
+import { CsvTableService } from '../../Services/csv-table.service';
+
 
 
 @Component({
@@ -12,10 +12,11 @@ export class FileContentComponent {
 
 root: any;
 
-regressionClicked: string = ""
+regressionTab: string = ""
 
 constructor(
-  private myVariableService: MyVariablesService,
+  private csvTableService: CsvTableService,
+
             
   ){
 
@@ -29,69 +30,11 @@ ngOnInit():void{
 }
 
 
-createElement(){
-
-  const mainDiv = document.getElementById("main") 
-  const newDiv = document.createElement("app-data-collector");
-
-  console.log(newDiv)
-  mainDiv?.appendChild(newDiv)
-}
-
-
-
 loadPage(result: any){
   
   this.root = document.querySelector('#csvRoot')
-  this.update(result.data.slice(1), result.data[0])  
-  console.log("init");
+  this.csvTableService.update(this.root,result.data.slice(1), result.data[0])  
+ console.log("load called")
 }
-
-
-   update(data: any, headerColumns = []) {
-    this.clear();
-    this.setHeader(headerColumns);
-    this.setBody(data);
-  }
-
-
-  clear() {
-    this.root.innerHTML = "";
-  }
-
-
-  setHeader(headerColumns:any) {
-    this.root.insertAdjacentHTML(
-      "afterbegin",
-      `
-            <thead>
-                <tr>
-                    ${headerColumns.map((text: any) => `<th>${text}</th>`).join("")}
-                </tr>
-            </thead>
-        `
-    );
-  }
-
-
-  setBody(data:any) {
-    const rowsHtml = data.map((row: any[]) => {
-      return `
-                <tr>
-                    ${row.map((text) => `<td>${text}</td>`).join("")}
-                </tr>
-            `;
-    });
-
-    this.root.insertAdjacentHTML(
-      "beforeend",
-      `
-            <tbody>
-                ${rowsHtml.join("")}
-            </tbody>
-        `
-    );
-  }
-
 
 }

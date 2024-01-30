@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MyVariablesService } from '../../Services/my-variables.service';
+import { ChartDataComponent } from '../chart-data/chart-data.component';
 import { DataCollectorComponent } from '../data-collector/data-collector.component';
 import { FileContentComponent } from '../file-content/file-content.component';
 
@@ -19,7 +20,8 @@ export class HeaderComponent {
   constructor(
     private dataCollector: DataCollectorComponent,
     private myVariableService: MyVariablesService,
-    private fileContent: FileContentComponent
+    private fileContent: FileContentComponent,
+    private chartData: ChartDataComponent
 
     
     ){}
@@ -31,8 +33,7 @@ export class HeaderComponent {
 
 
     regressionClicked(){
-      this.fileContent.createElement()
-      console.log("clicked")
+      this.chartData.regressionTabClicked()
       }
 
 }

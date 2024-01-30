@@ -1,8 +1,29 @@
- <section>
+<section id="csvTable"> 
+  <table id="csvRoot1"></table>
+</section>
 
-
-  <div class="optionsContainer">
+ <section id="mainSection" [ngClass]="mainSectionActive">
   
+  <div id="mainSectionDuckControl" >
+    <div id="mainSectionDuckIcon">
+        <mat-icon [ngClass]="switchMatIcon1" (click)="mainSectionOpenDuckerClicked()">first_page</mat-icon>
+        <mat-icon [ngClass]="switchMatIcon2" (click)="mainSectionCloseDuckerClicked()">last_page</mat-icon>
+    </div>
+</div>
+
+<div id="switchTab">
+<div></div>
+</div>
+
+<div id="mainOptionsContainer" [ngClass]="mainOptionsActive">
+  <div id="mainOptionsDuckControl" >
+    <div id="mainOptionsDuckIcon">
+        <mat-icon [ngClass]="switchMatIcon3" (click)="mainOptionsOpenDuckerClicked()">last_page</mat-icon>
+        <mat-icon [ngClass]="switchMatIcon4" (click)="mainOptionsCloseDuckerClicked()">first_page</mat-icon>
+    </div>
+</div>
+
+    <div class="innerOptionsContainer">
     <form [formGroup]=" columnsForm" (ngSubmit)="fetch_columns()">
 
       <div class = "plotOptions" >
@@ -47,9 +68,11 @@
       </div>
   </div>
 
-</section>
-  
-<section>
+
+</div>
+
+
+<section id="graphSection">
 
   <div id="chartTab">
     <div *ngIf="dataLoaded === true" class="plotsMainDiv" id="plotDiv">
@@ -58,6 +81,10 @@
   </div>
   
 </section>
+
+
+</section>
+  
 
 
 
